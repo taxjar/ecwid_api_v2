@@ -5,8 +5,10 @@ module EcwidApi
 
     ecwid_reader :company, :city, :countryCode, :stateOrProvinceCode, :currency, :currencyPrefix, :taxes
 
-
     ecwid_writer :company, :city, :countryCode, :stateOrProvinceCode, :currency, :currencyPrefix, :taxes
 
+    def code
+      country_code
+    end
   end
 end
