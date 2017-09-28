@@ -3,11 +3,20 @@ module EcwidApi
 
   class ResponseError < Error
     def initialize(response)
+      super get_response_info(response)
+    end
+
+    def get_response_info(response)
+      url = response.env.url
+      url.query = url.query.sub(/token=[^&]*/, 'token=**SECRET**')
+      message = "url: #{url}, response (#{response.status})\n#{response.body}"
       if response.respond_to?(:reason_phrase)
-        super "#{response.reason_phrase} (#{response.status})\n#{response.body}"
-      else
-        super "The Ecwid API responded with an error (#{response.status})\n#{response.body}"
+        message = "#{response.reason_phrase} #{message}"
       end
+
+      message
     end
   end
+  class UpdateError < ResponseError; end;
+
 end
