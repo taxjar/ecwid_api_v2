@@ -6,7 +6,7 @@ module EcwidApi
       if response.respond_to?(:reason_phrase)
         super "#{response.reason_phrase} (#{response.status})\n#{response.body}"
       else
-        super "The Ecwid API responded with an error (#{response.status})"
+        super "The Ecwid API responded with an error (#{response.status})\n#{response.body}"
       end
     end
   end
