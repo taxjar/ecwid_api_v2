@@ -39,6 +39,9 @@ module EcwidApi
         conn.response :json, content_type: /\bjson$/
         conn.response :logger if options[:response_logging]
 
+        conn.options[:open_timeout] = 3
+        conn.options[:timeout] = 6
+
         conn.adapter  options[:adapter]
       end
 
