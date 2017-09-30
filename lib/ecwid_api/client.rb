@@ -97,7 +97,8 @@ module EcwidApi
     #
     def raise_on_failure(response)
       if response.success?
-        if response.body["updateCount"] && response.body["updateCount"] != 1
+        if response.body.is_a?(Hash) && response.body["updateCount"] &&
+           response.body["updateCount"] != 1
           raise UpdateError.new(response)
         end
         response
