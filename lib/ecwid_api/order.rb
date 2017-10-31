@@ -13,7 +13,7 @@ module EcwidApi
                  :shippingPerson, :shippingOption, :additionalInfo,
                  :paymentParams, :discountInfo, :trackingNumber,
                  :paymentMessage, :extTransactionId, :affiliateId,
-                 :creditCardStatus
+                 :creditCardStatus, :handlingFee, :customer_tax_exempt, :reversedTaxApplied, :taxes
 
 
     ecwid_writer :subtotal, :total, :email, :paymentMethod, :paymentModule,
@@ -25,7 +25,7 @@ module EcwidApi
                  :items, :billingPerson, :shippingPerson, :shippingOption,
                  :additionalInfo, :paymentParams, :discountInfo,
                  :trackingNumber, :paymentMessage, :extTransactionId,
-                 :affiliateId, :creditCardStatus
+                 :affiliateId, :creditCardStatus, :handlingFee, :customer_tax_exempt, :reversedTaxApplied, :taxes
 
     VALID_FULFILLMENT_STATUSES = %w(
       AWAITING_PROCESSING
