@@ -62,6 +62,8 @@ module EcwidApi
 
     def paged_get(path, params={}, &block)
       # TODO: здесь не обрабатываются failure?
+      # Но и падать не надо, поидее? Т.к. может быть много уже загруженных данных.
+      # Надо ретраить?
       PagedEcwidResponse.new(client, path, params, &block)
     end
 
