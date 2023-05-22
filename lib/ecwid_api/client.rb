@@ -60,6 +60,11 @@ module EcwidApi
       raise_on_failure connection.get(*args, &block)
     end
 
+    def paged_get(path, params={}, &block)
+      # TODO: здесь не обрабатываются failure?
+      PagedEcwidResponse.new(client, path, params, &block)
+    end
+
     def post(*args, &block)
       raise_on_failure connection.post(*args, &block)
     end
