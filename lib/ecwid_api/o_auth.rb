@@ -96,7 +96,7 @@ module EcwidApi
     # Private: Returns a connection for obtaining an access token from Ecwid
     #
     def connection
-      @connection ||= Faraday.new "https://my.ecwid.com" do |conn|
+      @connection ||= Faraday.new(url: "https://my.ecwid.com") do |conn|
         conn.request  :url_encoded
         conn.response :json, content_type: /\bjson$/
         conn.adapter  Faraday.default_adapter

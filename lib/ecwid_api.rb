@@ -1,7 +1,6 @@
 require "ecwid_api/version"
 require "ext/string"
 require 'faraday'
-require 'faraday_middleware'
 
 require_relative "ecwid_api/error"
 
