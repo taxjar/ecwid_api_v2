@@ -33,10 +33,9 @@ module EcwidApi
       @store_id, @token, @adapter = store_id, token, options[:adapter]
 
       @connection = Faraday.new(url: store_url) do |conn|
-        conn.request  :oauth2, token, param_name: :token, token_type: :param
+        # conn.request  :oauth2, token, param_name: :token, token_type: :param
         conn.request  :json
-
-        conn.response :json, content_type: /\bjson$/
+        conn.response :json
         conn.response :logger if options[:response_logging]
 
         conn.options.open_timeout = 3
