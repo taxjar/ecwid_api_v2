@@ -37,7 +37,7 @@ module EcwidApi
 
       begin
         response = @client.get(@path, params)
-        items = response.body["items"] || []
+        items = response.with_indifferent_access.body["items"] || []
         items.each do |item|
           yield(@block ? @block.call(item) : item)
         end
