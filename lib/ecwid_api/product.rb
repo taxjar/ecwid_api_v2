@@ -61,5 +61,5 @@ module EcwidApi
     def updated
       @updated ||= Time.parse(super)
     end
-	end
+        end
 end
