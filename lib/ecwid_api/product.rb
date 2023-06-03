@@ -1,5 +1,5 @@
 module EcwidApi
-	class Product < Entity
+  class Product < Entity
     self.url_root = "products"
 
     ecwid_reader :id, :sku, :quantity, :unlimited, :inStock, :name, :price,
@@ -61,5 +61,5 @@ module EcwidApi
     def updated
       @updated ||= Time.parse(super)
     end
-        end
+  end
 end
