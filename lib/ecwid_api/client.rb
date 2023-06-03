@@ -13,7 +13,7 @@ module EcwidApi
     extend Forwardable
 
     # The default base URL for the Ecwid API
-    DEFAULT_URL = "https://app.ecwid.com/api/v3"
+    DEFAULT_URL = "https://app.ecwid.com/"
 
     # Public: Returns the Ecwid Store ID
     attr_reader :store_id
@@ -32,7 +32,7 @@ module EcwidApi
       options[:adapter] ||= Faraday.default_adapter
       @store_id, @token, @adapter = store_id, token, options[:adapter]
 
-      @connection = Faraday.new(url: store_url, params: { token: @token }) do |conn|
+      @connection = Faraday.new(url: store_url(uri_base: options[:uri_base]), params: { token: @token }) do |conn|
         # conn.request  :oauth2, token, param_name: :token, token_type: :param
         conn.request  :json
         conn.response :json
@@ -51,8 +51,8 @@ module EcwidApi
     end
 
     # Public: The URL of the API for the Ecwid Store
-    def store_url
-      "#{DEFAULT_URL}/#{store_id}"
+    def store_url(uri_base: nil)
+      "#{uri_base || DEFAULT_URL}/api/v3/#{store_id}"
     end
 
     def get(*args, &block)
