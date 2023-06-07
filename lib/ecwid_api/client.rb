@@ -61,8 +61,9 @@ module EcwidApi
 
     def paginate_get(path, options = {})
       current_page = (options.delete(:page) || 1).to_i
+      limit = options[:limit] || 100
       request_options = options.merge(
-        limit: options[:limit] || 100,
+        limit: limit,
         offset: (current_page - 1) * limit
       )
       result = raise_on_failure connection.get(path, request_options, &block)
