@@ -66,7 +66,7 @@ module EcwidApi
         limit: limit,
         offset: (current_page - 1) * limit
       )
-      result = raise_on_failure connection.get(path, request_options, &block)
+      result = raise_on_failure connection.get(path, request_options)
       pages_count = (result[:total] / request_options[:limit].to_f).ceil
 
       [result, current_page, pages_count]
