@@ -59,7 +59,19 @@ module EcwidApi
       raise_on_failure connection.get(*args, &block)
     end
 
-    def paged_get(path, params={}, &block)
+    def paginate_get(path, options = {})
+      current_page = (options.delete(:page) || 1).to_i
+      request_options = options.merge(
+        limit: options[:limit] || 100,
+        offset: (current_page - 1) * limit
+      )
+      result = raise_on_failure connection.get(path, request_options, &block)
+      pages_count = (result[:total] / request_options[:limit].to_f).ceil
+
+      [result, current_page, pages_count]
+    end
+
+    def get_all(path, params={}, &block)
       # TODO: здесь не обрабатываются failure?
       # Но и падать не надо, поидее? Т.к. может быть много уже загруженных данных.
       # Надо ретраить?
