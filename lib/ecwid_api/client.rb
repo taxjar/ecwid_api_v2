@@ -69,7 +69,7 @@ module EcwidApi
       result = raise_on_failure connection.get(path, request_options)
       pages_count = (result[:total] / request_options[:limit].to_f).ceil
 
-      [result, current_page, pages_count]
+      [result[:items], current_page, pages_count]
     end
 
     def get_all(path, params={}, &block)
