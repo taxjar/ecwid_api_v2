@@ -76,7 +76,7 @@ module EcwidApi
       # TODO: здесь не обрабатываются failure?
       # Но и падать не надо, поидее? Т.к. может быть много уже загруженных данных.
       # Надо ретраить?
-      PagedEcwidResponse.new(client, path, params, &block)
+      PagedEcwidResponse.new(self, path, params, &block)
     end
 
     def post(*args, &block)

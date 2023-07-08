@@ -37,12 +37,12 @@ module EcwidApi
 
       begin
         response = @client.get(@path, params)
-        items = response.with_indifferent_access.body["items"] || []
+        items = response.with_indifferent_access["items"] || []
         items.each do |item|
           yield(@block ? @block.call(item) : item)
         end
         count, offset, total = %w(count offset total).map do |i|
-          response.body[i].to_i
+          response[i].to_i
         end
 
         params = params.merge(offset: offset + count)
