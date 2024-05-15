@@ -18,7 +18,7 @@ module EcwidApi
   #   token.access_token
   #   token.store_id      # these are what you need to access the API
   #
-  class OAuth
+  class Authentication
     CONFIG = %w(client_id client_secret scope redirect_uri)
     attr_accessor *CONFIG
 
