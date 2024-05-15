@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe EcwidApi::OAuth do
+describe EcwidApi::Authentication do
   subject do
-    EcwidApi::OAuth.new do |config|
+    EcwidApi::Authentication.new do |config|
       config.client_id = "client_id"
       config.client_secret = "client_secret"
       config.scope = "scope"
